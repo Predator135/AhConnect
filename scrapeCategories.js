@@ -1,10 +1,9 @@
 const puppeteer = require('puppeteer');
-const fs = require('fs');
 
-async function main(url) {
+async function main() {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto(url);
+    await page.goto("https://www.ah.nl/allerhande/recepten-zoeken");
 
     var list = await page.evaluate(() => Array.from(document.querySelector("#body-container > div.container.search.loaded > div > div.result-wrapper.clearfix > aside").getElementsByTagName("li"))
         .map((stap) => 
@@ -22,13 +21,19 @@ async function main(url) {
         list[i][0] = full.replace(/\s\([0-9]+\)/ , "").toString();
     }
 
-    var obj = {
-        
-    };
-    console.log(list);
-    // return stringedObj;
+    var objArr = [];
+
+    for(i=0;i<list.length;i++){
+        objArr.push({
+            "naam": list[i][0],
+            "link": list[i][1],
+            "aantal": list[i][2]
+        })
+    }
+
+    return objArr;
 }
 
-main("https://www.ah.nl/allerhande/recepten-zoeken").then((data) => {
+main().then((data) => {
     console.log(data);
 });
