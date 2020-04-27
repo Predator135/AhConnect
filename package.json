@@ -5,6 +5,7 @@
   "main": "scrapeCategories.js",
   "dependencies": {
     "atomic-sleep": "^1.0.0",
+    "express": "^4.17.1",
     "node-gyp": "^6.1.0",
     "puppeteer": "^3.0.1",
     "sleep": "^6.1.0"
