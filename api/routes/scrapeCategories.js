@@ -18,7 +18,7 @@ async function main() {
 
         list[i][2] = sub.replace(/,/ , "").toString();
         list[i][1] = list[i][1] + "?Nrpp=" + sub.replace(/,/ , "").toString();
-        list[i][0] = full.replace(/\s\([0-9]+\)/ , "").toString();
+        list[i][0] = full.replace(/\s\([0-9.]+\)/ , "").toString();
     }
 
     var objArr = [];
@@ -34,6 +34,8 @@ async function main() {
     return objArr;
 }
 
-main().then((data) => {
-    console.log(data);
-});
+module.exports = main();
+
+// main().then((data) => {
+//     console.log(data);
+// });
